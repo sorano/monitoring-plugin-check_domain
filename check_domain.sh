@@ -115,7 +115,7 @@ set_defaults() {
 parse_arguments() {
 	# shellcheck disable=SC2039
 	local args
-	args=$(getopt -o hVd:w:c:P:s:a:C: --long help,version,domain:,warning:,critical:,path:,server:,cache-age:,cache-dir: -u -n "$PROGRAM" -- "$@")
+	args=$(getopt -o hHVd:w:c:P:s:a:C: --long help,version,domain:,warning:,critical:,path:,server:,cache-age:,cache-dir: -u -n "$PROGRAM" -- "$@")
 	eval set -- "$args"
 
 	while :; do
@@ -155,6 +155,9 @@ parse_arguments() {
 		-h|--help)
 			fullusage
 			exit
+		;;
+		-H)
+			host_name=$1
 		;;
 		--)
 			shift
